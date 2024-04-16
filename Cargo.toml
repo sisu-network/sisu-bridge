@@ -1,0 +1,43 @@
+[package]
+name = "anonnice1999"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# ARK
+ark-std = { version = "0.4.0", default-features = false }
+ark-ff = { version = "=0.4.1", default-features = false }
+ark-poly = { version = "=0.4.1", default-features = false }
+ark-crypto-primitives = { version = "0.4.0", default-features = false }
+ark-groth16 = { version = "0.4.0", default-features = false }
+ark-bn254 = { version = "0.4.0", default-features = false, features = [
+    "curve",
+] }
+ark-bls12-381 = { version = "0.4.0", default-features = false, features = [
+    "curve",
+] }
+ark-ec = { version = "0.4.1", default-features = false, features = [] }
+ark-poly-commit = { version = "0.4.0", default-features = false }
+
+# OTHER DEPENDENCIES
+rand = "0.8.5"
+sha2 = "0.10.6"
+sha1 = "0.10.6"
+typenum = "1.16.0"
+num-bigint = { version = "0.4.4", default-features = false }
+num-traits = "0.2.16"
+
+# PARALLEL
+rayon = { version = "1.8.1", optional = true }
+
+# SISU
+sisu = { path = "./sisu", default-features = false }
+sisulib = { path = "./sisulib", default-features = false }
+zkbridge = { path = "./zkbridge", default-features = false }
+circom-compat = { path = "./circom-compat", default-features = false }
+
+
+[features]
+parallel = ["sisu/parallel", "ark-std/parallel", "ark-poly/parallel", "rayon"]

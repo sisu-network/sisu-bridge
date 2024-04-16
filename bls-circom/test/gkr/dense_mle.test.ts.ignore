@@ -1,0 +1,30 @@
+import path from 'path';
+
+const circom_tester = require('circom_tester');
+const wasm_tester = circom_tester.wasm;
+describe("Dense MLE", function () {
+  jest.setTimeout(1000 * 1000);
+
+  it("DenseMle Evaluation", async function () {
+    let circuit = await wasm_tester(
+      path.join(__dirname, '.', 'test_dense_mle.circom')
+    );
+    let witness = await circuit.calculateWitness({
+      "evals": ["5", "490", "2630", "3911", "4000", "9714", "5441", "838", "3354", "2645", "475", "5425", "4185", "9816", "3630", "554"],
+      "points": ["4251", "8129", "8593", "7685"]
+    });
+    await circuit.assertOut(witness, { "out": "11020112513282984315" });
+  });
+
+  it("DenseMle Update Single poly", async function () {
+    let circuit = await wasm_tester(
+      path.join(__dirname, '.', 'test_dense_mle_single_update.circom')
+    );
+    let witness = await circuit.calculateWitness({
+      "left": "8246",
+      "right": "579",
+      "r": "3206"
+    });
+    await circuit.assertOut(witness, { "out": "18446744069390012165" });
+  });
+});

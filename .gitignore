@@ -1,0 +1,7 @@
+test.circom
+test.r1cs*
+test.sym
+test_cpp/
+test_js/
+bls-circom/tests/common
+files/

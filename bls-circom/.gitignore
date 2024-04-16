@@ -1,0 +1,8 @@
+input.json
+public.json
+pot12*
+*.ptau
+build
+node_modules
+test_generated.circom
+*.gen.circom

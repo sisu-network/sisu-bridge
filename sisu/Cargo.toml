@@ -1,0 +1,64 @@
+[package]
+name = "sisu"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# ARK
+ark-ff = { version = "0.4.1", default-features = false }
+ark-poly = { version = "0.4.1", default-features = false }
+ark-std = { version = "0.4.0", default-features = false }
+ark-serialize = { version = "0.4.1" }
+ark-crypto-primitives = { version = "0.4.0", default-features = false, features = [
+    "crh",
+] }
+ark-bn254 = { version = "0.4.0", default-features = false, features = [
+    "curve",
+] }
+ark-bls12-377 = { version = "0.4.0", default-features = false, features = [
+    "curve",
+] }
+ark-bls12-381 = { version = "0.4.0", default-features = false, features = [
+    "curve",
+] }
+ark-ed-on-bls12-381 = { version = "0.4.0", default-features = false, features = [
+    "r1cs",
+] }
+ark-ec = { version = "0.4.1", default-features = false }
+
+# ICICLE
+icicle-cuda-runtime = { git = "https://github.com/sisu-network/icicle.git", rev = "cafcfc6" }
+icicle-core = { git = "https://github.com/sisu-network/icicle.git", rev = "cafcfc6" }
+icicle-bn254 = { git = "https://github.com/sisu-network/icicle.git", rev = "cafcfc6", features = [
+    "arkworks",
+] }
+# icicle-cuda-runtime = { path = "../../../icicle/wrappers/rust/icicle-cuda-runtime" }
+# icicle-core = { path = "../../../icicle/wrappers/rust/icicle-core" }
+# icicle-bn254 = { path = "../../../icicle/wrappers/rust/icicle-curves/icicle-bn254", features = [
+#     "arkworks",
+# ] }
+
+# OTHER DEPENDENCIES
+sha2 = "0.10.3"
+thiserror = "^1.0.31"
+bitvec = "1.0.0"
+rand = "0.8.5"
+num-bigint = { version = "0.4.4", default-features = false }
+num-integer = "0.1.46"
+num-traits = "0.2.16"
+serde_json = "1.0.94"
+serde = { version = "1.0", features = ["derive"] }
+
+# SISU
+sisulib = { path = "../sisulib" }
+
+# PARALLEL
+rayon = { version = "1.8.1", optional = true }
+
+[features]
+parallel = ["ark-std/parallel", "rayon"]
+
+[dev-dependencies]
+itertools = "0.12.1"
