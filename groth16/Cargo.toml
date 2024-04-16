@@ -1,0 +1,40 @@
+[package]
+name = "groth16"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# ARK
+ark-std = "0.4.0"
+ark-ff = "0.4.0"
+ark-ec = "0.4.1"
+ark-poly = "0.4.0"
+ark-snark = "0.4.0"
+ark-relations = "0.4.0"
+ark-serialize = { version = "0.4.1", default-features = false }
+ark-groth16 = { version = "0.4.0", default-features = false, features = [] }
+ark-bn254 = { version = "0.4.0" }
+
+
+# ICICLE
+icicle-cuda-runtime = { git = "https://github.com/ingonyama-zk/icicle.git", branch = "dev" }
+icicle-core = { git = "https://github.com/ingonyama-zk/icicle.git", branch = "dev" }
+icicle-bn254 = { git = "https://github.com/ingonyama-zk/icicle.git", branch = "dev", features = [
+    "g2",
+    "arkworks",
+] }
+
+# OTHERS
+chrono = "0.4.33"
+rand_chacha = "0.3.1"
+serde_json = "1.0"
+num-bigint = { version = "=0.4.4", default-features = false, features = [
+    "rand",
+] }
+wtns-file = "0.1.5"
+color-eyre = "=0.6.2"
+
+# IN-HOUSE
+circom-compat = { path = "../circom-compat" }

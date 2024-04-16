@@ -1,0 +1,22 @@
+[package]
+name = "zkbridge"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# ARK
+ark-ff = { version = "0.4", default-features = false }
+ark-serialize = { version = "0.4", default-features = false }
+
+sha2 = "0.10.6"
+
+# SISU
+sisu = { path = "../sisu", default-features = false }
+sisulib = { path = "../sisulib", default-features = false }
+sha256-circuit = { path = "../sha256-circuit", default-features = false }
+#pubkey-aggregation = { path = "../pubkey-aggregation", default-features = false }
+
+# ETHEREUM 2
+eth2_ssz = "0.4.0"
